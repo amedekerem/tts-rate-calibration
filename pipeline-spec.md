@@ -57,7 +57,7 @@ Script: {script}
 
 | Rule | Value |
 |---|---|
-| Timing pass | The gap is between -3.0 and +3.0 seconds, including exactly 3.0 |
+| Timing pass | The gap is between -3.0 and +3.0 seconds, including exactly -3.0 and +3.0 |
 | How length is measured | The app reads the length with `mutagen.mp3.MP3(path).info.length` on the saved MP3 file. It rounds the result to 0.1 seconds. |
 | Not allowed | Estimating the length from the word count or from the target words |
 | Coverage pass | The script states the slide's `key_visual_point`: the same fact, with the same direction and the same numbers. For example, "sales doubled after March" passes. "Sales changed over the year" fails. |
