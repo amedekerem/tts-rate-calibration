@@ -1,7 +1,7 @@
 # TTS Rate Calibration
 
 ## Calibration Setup
-- **Voice Used:** `en-US-AriaNeural` (`edge-tts`)
+- **Voice Used:** en-US-AriaNeural (`edge-tts`)
 - **Word Counting Rule:** Split passage text on spaces (`passage_text.split(" ")`)
 - **Measured Speaking Rate:** `2.61` words per second (average across `p01`–`p08`)
 
