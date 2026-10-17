@@ -1,4 +1,5 @@
 Voice: en-US-AriaNeural
+
 Word rule: Passage Text split on spaces
     
     p01, 25, 8.98, 2.79
