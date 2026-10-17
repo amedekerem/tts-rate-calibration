@@ -1,6 +1,18 @@
-Voice: en-US-AriaNeural
+# TTS Rate Calibration
 
-Word rule: Passage Text split on spaces
+## Calibration Setup
+- **Voice Used:** `en-US-AriaNeural` (`edge-tts`)
+- **Word Counting Rule:** Split passage text on spaces (`passage_text.split(" ")`)
+- **Measured Speaking Rate:** `2.61` words per second (average across `p01`–`p08`)
+
+## Pipeline Spec
+
+## Three-Slide Run Log
+
+## Review Notes
+
+## App Results
+
     
     p01, 25, 8.98, 2.79
     p02, 59, 21.48, 2.75
