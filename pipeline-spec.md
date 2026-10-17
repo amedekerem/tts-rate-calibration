@@ -21,11 +21,11 @@ Return only the script text, with nothing before or after it.
 
 | Item | Value |
 |---|---|
-| Formula | target words = target seconds × 2.45 words per second |
-| Rate | 2.45 words per second. This is the average from the edge-tts calibration run: 5 test scripts, voice `en-AU-NatashaNeural`, rate `+0%` |
+| Formula | target words = target seconds × 2.61 words per second |
+| Rate | 2.61 words per second. This is the average from the edge-tts calibration run: 8 test scripts, voice `en-US-AriaNeural`, rate `+0%` |
 | Rounding | Round to the nearest whole word. Exact halves round up. |
-| Worked example | 30 seconds × 2.45 words per second = 73.5 → **74 words** |
-| Gap | gap = MP3 length measured by mutagen (seconds), target seconds |
+| Worked example | 30 seconds × 2.61 words per second = 78.3 → **78 words** |
+| Gap | gap = MP3 length measured by mutagen (seconds) - target seconds |
 
 A positive gap means the audio runs too long. A negative gap means it runs too short.
 
@@ -35,8 +35,8 @@ The app runs a retry each time the gap is more than 3.0 seconds either way. Each
 
 | Order | Step | Detail |
 |---|---|---|
-| 1 | edge-tts rate nudge | The script stays the same. The app changes the edge-tts speaking rate by 10 points and makes the MP3 again. If the gap is over +3.0 s, the rate goes faster (`+10%`). If the gap is under, 3.0 s, the rate goes slower (`-10%`). The rate never moves more than 20 points from `+0%`, so this step can run at most 2 times. |
-| 2 | Model rewrite | This step runs only if the audio still misses after the rate nudges. The rate resets to `+0%`. The app sends the script back with the rewrite prompt below. It sets new target words to the current word count, round(gap × 2.45). |
+| 1 | edge-tts rate nudge | The script stays the same. The app changes the edge-tts speaking rate by 10 points and makes the MP3 again. If the gap is over +3.0 s, the rate goes faster (`+10%`). If the gap is under -3.0 s, the rate goes slower (`-10%`). The rate never moves more than 20 points from `+0%`, so this step can run at most 2 times. |
+| 2 | Model rewrite | This step runs only if the audio still misses after the rate nudges. The rate resets to `+0%`. The app sends the script back with the rewrite prompt below. It sets new target words to the current word count - round(gap × 2.61). |
 
 Rewrite prompt (verbatim):
 
@@ -57,7 +57,7 @@ Script: {script}
 
 | Rule | Value |
 |---|---|
-| Timing pass | The gap is between, 3.0 and +3.0 seconds, including exactly 3.0 |
+| Timing pass | The gap is between -3.0 and +3.0 seconds, including exactly 3.0 |
 | How length is measured | The app reads the length with `mutagen.mp3.MP3(path).info.length` on the saved MP3 file. It rounds the result to 0.1 seconds. |
 | Not allowed | Estimating the length from the word count or from the target words |
 | Coverage pass | The script states the slide's `key_visual_point`: the same fact, with the same direction and the same numbers. For example, "sales doubled after March" passes. "Sales changed over the year" fails. |
